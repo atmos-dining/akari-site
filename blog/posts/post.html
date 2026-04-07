@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ブログ記事｜酒処あかり</title>
+<link rel="icon" href="../../favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../style.css">
+<style>
+  .post-hero-image {
+    margin: 0 auto 28px;
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 800px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+  }
+  .post-hero-image img { width: 100%; height: auto; display: block; }
+  .post-body { max-width: 720px; margin: 0 auto; font-size: 15px; line-height: 1.9; color: #333; }
+  .post-body h2 { font-size: 20px; margin: 28px 0 12px; padding-left: 12px; border-left: 3px solid var(--primary); }
+  .post-body h3 { font-size: 17px; margin: 20px 0 8px; color: var(--dark); }
+  .post-body p  { margin-bottom: 16px; }
+  .post-body ul, .post-body ol { padding-left: 1.5em; margin-bottom: 16px; }
+  .post-body li { margin-bottom: 6px; }
+  .post-back { text-align: center; margin-top: 40px; }
+</style>
+</head>
+
+<body data-page="blog">
+<div id="top"></div>
+<div id="shared-header"></div>
+
+<main id="main">
+  <section class="section is-inview blog-page" style="padding-top: 24px !important;" id="post-section">
+    <div class="section-inner">
+      <div id="post-content">
+        <p style="text-align:center;color:#999;">記事を読み込んでいます...</p>
+      </div>
+      <div class="post-back">
+        <a href="../index.html" class="btn-secondary">← ブログ一覧に戻る</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="shared-bottom"></div>
+  <a href="#top" class="page-top" aria-label="ページの先頭へ戻る">＾</a>
+</main>
+
+<script src="../../common.js"></script>
+<script>
+(function () {
+  const params = new URLSearchParams(location.search);
+  const slug   = params.get('slug');
+  const container = document.getElementById('post-content');
+  if (!slug || !container) return;
+
+  function esc(s) {
+    return String(s ?? '').replaceAll('&','&amp;').replaceAll('<','&lt;')
+      .replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#39;");
+  }
+  function fmtDate(d) {
+    const m = String(d || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    return m ? `${m[1]}年${m[2]}月${m[3]}日` : esc(d || '');
+  }
+  function mdToHtml(md) {
+    return String(md || '')
+      .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+      .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+      .replace(/^# (.+)$/gm, '<h2>$1</h2>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/^- (.+)$/gm, '<li>$1</li>')
+      .replace(/(<li>.*<\/li>\n?)+/g, s => `<ul>${s}</ul>`)
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/^(?!<[hul])(.+)$/gm, '<p>$1</p>');
+  }
+
+  fetch('../../blog/posts.json', { cache: 'no-store' })
+    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    .then(data => {
+      const posts = data.posts ?? data;
+      const post  = posts.find(p => p.slug === slug);
+      if (!post) throw new Error('not found');
+
+      document.title = `${post.title}｜酒処あかり`;
+
+      let html = '';
+      if (post.image) {
+        html += `<div class="post-hero-image"><img src="../../${post.image.replace(/^\.\//, '')}" alt="${esc(post.title)}"></div>`;
+      }
+      html += `<h1 class="page-title">${esc(post.title)}</h1>`;
+      html += `<time class="blog-date" datetime="${esc(post.date)}" style="display:block;margin-bottom:24px;">${fmtDate(post.date)}</time>`;
+      html += `<div class="post-body">${mdToHtml(post.body)}</div>`;
+      container.innerHTML = html;
+    })
+    .catch(() => {
+      container.innerHTML = '<p style="text-align:center;color:#999;">記事が見つかりませんでした。</p>';
+    });
+})();
+</script>
+</body>
+</html>
