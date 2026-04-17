@@ -7,25 +7,29 @@
 :root {
   --header-h: 112px;
 
-  /* Theme Colors */
-  --primary:        #C8392A;
-  --primary-hover:  #A02D21;
-  --primary-soft:   #FFF0EE;
+  /* Theme Colors — 温かい居酒屋カラー */
+  --primary:        #C8392A;   /* 提灯の朱色 */
+  --primary-hover:  #A8301F;
+  --primary-soft:   #FFEEEB;
   --primary-ink:    #fff;
 
-  --gold:           #C9A84C;
-  --gold-hover:     #B08A30;
-  --gold-soft:      #FFF8E8;
+  --gold:           #C4872A;   /* 琥珀・燗酒色 */
+  --gold-hover:     #A36D1C;
+  --gold-soft:      #FFF3DC;
 
-  --dark:           #0E0E0E;
-  --dark-2:         #1A1010;
-  --dark-3:         #252020;
+  --dark:           #1E1208;   /* 焼き木のような深茶 */
+  --dark-2:         #2B1A0E;
+  --dark-3:         #3A2410;
 
-  --text:           #222;
-  --text-muted:     #666;
-  --bg:             #faf7f4;
-  --bg-alt:         #fff;
-  --bg-warm:        #f7f0ea;
+  --warm-bg:        #FBF5EE;   /* 和紙のような温かいクリーム */
+  --warm-section:   #F5E8D6;   /* 提灯の灯りが落ちる橙クリーム */
+  --warm-dark:      #4A2E14;   /* 深い木目茶 */
+
+  --text:           #2A1A0A;
+  --text-muted:     #7A5C44;
+  --bg:             #FBF5EE;
+  --bg-alt:         #FFFFFF;
+  --bg-warm:        #F5E8D6;
 
   /* Timing */
   --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
@@ -274,14 +278,28 @@ body:not(.is-home) .section {
 }
 
 .btn-secondary {
+  background-color: rgba(255,255,255,0.92);
+  color: var(--primary);
+  border-color: rgba(255,255,255,0.9);
+}
+
+.btn-secondary:hover {
+  background-color: #fff;
+  border-color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ヒーロー以外（明るい背景上）での見た目を上書き */
+.section .btn-secondary,
+.reserve-block .btn-secondary {
   background-color: transparent;
   color: var(--primary);
   border-color: var(--primary);
 }
 
-.btn-secondary:hover {
+.section .btn-secondary:hover,
+.reserve-block .btn-secondary:hover {
   background-color: var(--primary-soft);
-  transform: translateY(-1px);
 }
 
 .btn-gold {
@@ -642,17 +660,7 @@ body:not(.is-home) .section {
   z-index: 1;
 }
 
-/* Decorative diagonal line */
-.hero::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 120px;
-  background: linear-gradient(to bottom right, transparent 49.5%, var(--bg) 50%);
-  z-index: 2;
-}
+/* 斜め線なし：hero::after は使用しない */
 
 .hero-inner {
   position: relative;
@@ -850,10 +858,10 @@ body:not(.is-home) .section {
 
 /* --------------- Concept --------------- */
 
-.concept { background-color: var(--dark-2); color: #eee; }
+.concept { background-color: var(--warm-section); color: var(--text); }
 
-.concept .section-title { color: #fff; }
-.concept .section-title::after { background: var(--gold); }
+.concept .section-title { color: var(--dark); }
+.concept .section-title::after { background: var(--primary); }
 
 .concept-inner {
   display: grid;
@@ -863,13 +871,13 @@ body:not(.is-home) .section {
 }
 
 .concept-text p {
-  color: rgba(255,255,255,0.75);
+  color: var(--text-muted);
   margin-bottom: 14px;
   line-height: 1.85;
 }
 
 .concept-text .text-accent {
-  color: var(--gold);
+  color: var(--primary);
   font-weight: 700;
 }
 
@@ -900,7 +908,7 @@ body:not(.is-home) .section {
   gap: 28px;
   margin-top: 28px;
   padding-top: 24px;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 .stat-item { text-align: center; }
@@ -908,7 +916,7 @@ body:not(.is-home) .section {
 .stat-number {
   font-size: 36px;
   font-weight: 700;
-  color: var(--gold);
+  color: var(--primary);
   line-height: 1;
   display: block;
   font-feature-settings: "tnum";
@@ -916,7 +924,7 @@ body:not(.is-home) .section {
 
 .stat-label {
   font-size: 12px;
-  color: rgba(255,255,255,0.55);
+  color: var(--text-muted);
   letter-spacing: 0.08em;
   margin-top: 4px;
   display: block;
@@ -1112,11 +1120,11 @@ body:not(.is-home) .section {
 
 /* --------------- Drink --------------- */
 
-.drink { background-color: var(--dark-3); color: #eee; }
+.drink { background-color: var(--bg-warm); color: var(--text); }
 
-.drink .section-title { color: #fff; }
+.drink .section-title { color: var(--dark); }
 .drink .section-title::after { background: var(--gold); }
-.drink .section-lead { color: rgba(255,255,255,0.65); }
+.drink .section-lead { color: var(--text-muted); }
 
 .drink-grid {
   display: grid;
@@ -1125,17 +1133,17 @@ body:not(.is-home) .section {
 }
 
 .drink-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--bg-alt);
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 18px;
   overflow: hidden;
-  transition: transform 0.3s var(--ease-out-quint), background 0.3s;
+  transition: transform 0.3s var(--ease-out-quint), box-shadow 0.3s;
 }
 
 .drink-card:hover {
   transform: translateY(-6px);
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(201,168,76,0.3);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.10);
+  border-color: rgba(196,135,42,0.3);
 }
 
 .drink-image {
@@ -1155,13 +1163,13 @@ body:not(.is-home) .section {
   font-size: 15px;
   padding: 14px 16px 5px;
   margin: 0;
-  color: #fff;
+  color: var(--dark);
 }
 
 .drink-card p {
   font-size: 13.5px;
   padding: 0 16px 18px;
-  color: rgba(255,255,255,0.6);
+  color: var(--text-muted);
   margin: 0;
 }
 
@@ -1292,11 +1300,11 @@ body:not(.is-home) .section {
 
 /* --------------- Reserve --------------- */
 
-.reserve { background-color: var(--dark-2); color: #eee; }
+.reserve { background-color: var(--warm-section); color: var(--text); }
 
-.reserve .section-title { color: #fff; }
-.reserve .section-title::after { background: var(--gold); }
-.reserve .section-lead { color: rgba(255,255,255,0.65); }
+.reserve .section-title { color: var(--dark); }
+.reserve .section-title::after { background: var(--primary); }
+.reserve .section-lead { color: var(--text-muted); }
 
 .reserve-grid {
   display: grid;
@@ -1305,19 +1313,23 @@ body:not(.is-home) .section {
 }
 
 .reserve-block {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: var(--bg-alt);
+  border: 1px solid rgba(0,0,0,0.07);
   border-radius: 18px;
   padding: 24px;
-  transition: border-color 0.3s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.reserve-block:hover { border-color: rgba(201,168,76,0.35); }
+.reserve-block:hover {
+  border-color: rgba(196,135,42,0.4);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.09);
+}
 
 .reserve-block h3 {
   font-size: 18px;
   margin-bottom: 10px;
-  color: #fff;
+  color: var(--dark);
 }
 
 .reserve-tel-label {
@@ -1337,12 +1349,12 @@ body:not(.is-home) .section {
 
 .reserve-time {
   font-size: 13px;
-  color: rgba(255,255,255,0.55);
+  color: var(--text-muted);
   margin-top: 8px;
 }
 
 .reserve-block p {
-  color: rgba(255,255,255,0.7);
+  color: var(--text-muted);
   font-size: 14px;
   margin-bottom: 14px;
 }
