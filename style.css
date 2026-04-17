@@ -215,6 +215,11 @@ body.is-home .section.is-inview {
   transform: translateY(0);
 }
 
+/* 下層ページ：固定ヘッダー分だけ上に余白を作る */
+body:not(.is-home) main {
+  padding-top: var(--header-h);
+}
+
 body:not(.is-home) .section {
   opacity: 1;
   transform: none;
@@ -946,6 +951,8 @@ body:not(.is-home) .section {
 .course-hero img {
   width: 100%;
   height: auto;
+  max-height: 480px;
+  object-fit: cover;
   display: block;
 }
 
@@ -1133,6 +1140,8 @@ body:not(.is-home) .section {
 .menu-feature-image img {
   width: 100%;
   height: auto;
+  max-height: 480px;
+  object-fit: cover;
   display: block;
 }
 
@@ -1204,6 +1213,8 @@ body:not(.is-home) .section {
 .drink-feature-image img {
   width: 100%;
   height: auto;
+  max-height: 480px;
+  object-fit: cover;
   display: block;
 }
 
