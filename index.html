@@ -425,7 +425,7 @@
       grid.innerHTML = '';
       top3.forEach(p => {
         const imgRaw = p.thumbnail || p.image || '';
-        const img = imgRaw ? imgRaw.replace(/^\.\.\//, './').replace(/^\.\//, './blog/') : '';
+        const img = imgRaw ? imgRaw.replace(/^\.\.\//, '') : '';
         const bg  = img ? `background-image:url('${esc(img)}');` : '';
         const el  = document.createElement('article');
         el.className = 'blog-card';
