@@ -386,6 +386,12 @@ body:not(.is-home) .section {
   border-bottom-color: rgba(201, 168, 76, 0.30);
 }
 
+/* 下層ページではスクロール前から濃い色を適用 */
+body:not(.is-home) .site-header {
+  background: rgba(80, 45, 8, 0.93);
+  border-bottom-color: rgba(201, 168, 76, 0.30);
+}
+
 .header-inner {
   max-width: 1080px;
   margin: 0 auto;
