@@ -69,7 +69,8 @@
         return;
       }
       posts.forEach(p => {
-        const img = p.image ? String(p.image) : '';
+        const imgRaw = p.thumbnail || p.image || '';
+        const img = imgRaw;
         const bg  = img ? `background-image:url('${esc(img)}');` : '';
         const el  = document.createElement('article');
         el.className = 'blog-card';
