@@ -88,8 +88,9 @@
       document.title = `${post.title}｜酒処あかり`;
 
       let html = '';
-      if (post.image) {
-        html += `<div class="post-hero-image"><img src="../../${post.image.replace(/^\.\//, '')}" alt="${esc(post.title)}"></div>`;
+      const imgSrc = post.thumbnail || post.image;
+      if (imgSrc) {
+        html += `<div class="post-hero-image"><img src="../../${imgSrc.replace(/^\.\.\//, '').replace(/^\.\//, '')}" alt="${esc(post.title)}"></div>`;
       }
       html += `<h1 class="page-title">${esc(post.title)}</h1>`;
       html += `<time class="blog-date" datetime="${esc(post.date)}" style="display:block;max-width:720px;margin:0 auto 24px;">${fmtDate(post.date)}</time>`;
