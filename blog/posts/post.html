@@ -92,7 +92,7 @@
         html += `<div class="post-hero-image"><img src="../../${post.image.replace(/^\.\//, '')}" alt="${esc(post.title)}"></div>`;
       }
       html += `<h1 class="page-title">${esc(post.title)}</h1>`;
-      html += `<time class="blog-date" datetime="${esc(post.date)}" style="display:block;margin-bottom:24px;">${fmtDate(post.date)}</time>`;
+      html += `<time class="blog-date" datetime="${esc(post.date)}" style="display:block;max-width:720px;margin:0 auto 24px;">${fmtDate(post.date)}</time>`;
       html += `<div class="post-body">${mdToHtml(post.body)}</div>`;
       container.innerHTML = html;
     })
