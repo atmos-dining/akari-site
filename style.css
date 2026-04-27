@@ -669,9 +669,9 @@ body:not(.is-home) .site-header {
   100% { transform: scale(1.08); }
 }
 
-.hero-slide-1 { background-image: url("./images/hero-akari-1.jpg?v=2"); }
-.hero-slide-2 { background-image: url("./images/hero-akari-2.jpg?v=2"); }
-.hero-slide-3 { background-image: url("./images/hero-akari-3.jpg?v=2"); }
+.hero-slide-1 { background-image: url("./images/hero-akari-1.jpg?v=3"); }
+.hero-slide-2 { background-image: url("./images/hero-akari-2.jpg?v=3"); }
+.hero-slide-3 { background-image: url("./images/hero-akari-3.jpg?v=3"); }
 
 /* Dark overlay */
 .hero::before {
@@ -863,9 +863,9 @@ body:not(.is-home) .site-header {
   transform: scale(1.04);
 }
 
-.topic-image-1 { background-image: url("./images/topic-nomi.jpg"); }
-.topic-image-2 { background-image: url("./images/topic-motsuni.jpg"); }
-.topic-image-3 { background-image: url("./images/topic-showcase.jpg"); }
+.topic-image-1 { background-image: url("./images/topic-nomi.jpg?v=3"); }
+.topic-image-2 { background-image: url("./images/topic-motsuni.jpg?v=3"); }
+.topic-image-3 { background-image: url("./images/topic-showcase.jpg?v=3"); }
 
 .topic-card-body { padding: 16px 18px 18px; flex: 1; }
 
@@ -927,7 +927,7 @@ body:not(.is-home) .site-header {
   pointer-events: none;
 }
 
-.concept-main-image { background-image: url("./images/concept-akari.jpg"); }
+.concept-main-image { background-image: url("./images/concept-akari.jpg?v=3"); }
 
 /* Stats row inside concept */
 .concept-stats {
@@ -1133,9 +1133,9 @@ body:not(.is-home) .site-header {
 
 .menu-card:hover .menu-image { transform: scale(1.04); }
 
-.menu-image-1 { background-image: url("./images/menu-motsuni.jpg"); }
-.menu-image-2 { background-image: url("./images/menu-tebasaki.jpg"); }
-.menu-image-3 { background-image: url("./images/menu-showcase.jpg"); }
+.menu-image-1 { background-image: url("./images/menu-motsuni.jpg?v=3"); }
+.menu-image-2 { background-image: url("./images/menu-tebasaki.jpg?v=3"); }
+.menu-image-3 { background-image: url("./images/menu-showcase.jpg?v=3"); }
 
 .menu-card h3 {
   font-size: 15px;
@@ -1205,9 +1205,9 @@ body:not(.is-home) .site-header {
 
 .drink-card:hover .drink-image { transform: scale(1.04); }
 
-.drink-image-1 { background-image: url("./images/drink-beer.jpg"); }
-.drink-image-2 { background-image: url("./images/drink-sour.jpg"); }
-.drink-image-3 { background-image: url("./images/drink-shochu.jpg"); }
+.drink-image-1 { background-image: url("./images/drink-beer.jpg?v=3"); }
+.drink-image-2 { background-image: url("./images/drink-sour.jpg?v=3"); }
+.drink-image-3 { background-image: url("./images/drink-shochu.jpg?v=3"); }
 
 .drink-card h3 {
   font-size: 15px;
@@ -1222,6 +1222,10 @@ body:not(.is-home) .site-header {
   color: var(--text-muted);
   margin: 0;
 }
+
+/* drink subpage セクション間隔を詰める */
+.drink-feature { padding-bottom: 36px; }
+.drink-page    { padding-top: 36px; }
 
 /* drink feature (subpage) */
 .drink-feature-image {
@@ -1282,7 +1286,7 @@ body:not(.is-home) .site-header {
 
 .space-image:hover { transform: scale(1.015); }
 
-.space-main-image { background-image: url("./images/space-akari.jpg"); }
+.space-main-image { background-image: url("./images/space-akari.jpg?v=3"); }
 
 
 /* --------------- Blog --------------- */
@@ -1625,6 +1629,10 @@ body:not(.is-home) .site-header {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.mp-grid--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .mp-card {
   background: var(--bg-alt);
   border-radius: 14px;
@@ -1819,7 +1827,8 @@ body:not(.is-home) .site-header {
 
   .drinkcat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .mp-grid--feature,
-  .mp-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mp-grid--3,
+  .mp-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 640px) {
@@ -1841,7 +1850,8 @@ body:not(.is-home) .site-header {
 
   .drinkcat-grid { grid-template-columns: 1fr; }
   .mp-grid--feature,
-  .mp-grid--3 { grid-template-columns: 1fr; }
+  .mp-grid--3,
+  .mp-grid--4 { grid-template-columns: 1fr; }
 
   .concept-stats { flex-direction: column; align-items: center; }
 }
