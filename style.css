@@ -1839,6 +1839,10 @@ body:not(.is-home) .site-header {
   .hero-actions { flex-direction: column; align-items: flex-start; }
   .hero::after { display: none; }
 
+  /* スマホ：ヘッダーに被らないよう上揃えに変更 */
+  .hero { align-items: flex-start; }
+  .hero-inner { padding-top: 76px; }
+
   .topics-grid,
   .course-grid,
   .menu-grid,
