@@ -1,7 +1,7 @@
 # 酒処あかり サイト作業メモ
 
 ## プロジェクト概要
-- サイト: https://sakedoro-akari.com
+- サイト: https://sakedokoro-akari.com
 - ホスティング: GitHub Pages（予定）
 - リポジトリ: `atmos-dining/akari-site`（GitHub）
 - ブランチ: main
@@ -35,5 +35,5 @@
 - GitHub OAuth App: 六本松ごえん CMS（Client ID: Ov23liCY31EnaQCgwLx9）共用
 
 ## ドメイン
-- CNAMEファイル: `sakedoro-akari.com`
+- CNAMEファイル: `sakedokoro-akari.com`
 - GA4: G-3RQDKX6XT9（全ページに設置済み）
