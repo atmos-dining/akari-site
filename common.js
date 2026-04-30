@@ -219,6 +219,35 @@
   }
 
   /* -------------------------------------------------------
+   * GA4 イベントトラッキング（電話・予約ボタン）
+   * ------------------------------------------------------- */
+  function initGA4Tracking() {
+    if (typeof gtag !== 'function') return;
+
+    document.addEventListener('click', function (e) {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href') || '';
+
+      // 電話ボタン
+      if (href.startsWith('tel:')) {
+        gtag('event', 'phone_call', {
+          event_category: 'contact',
+          event_label: href.replace('tel:', ''),
+        });
+      }
+
+      // ネット予約ボタン（AutoReserve）
+      if (href.includes('autoreserve.com')) {
+        gtag('event', 'reservation_click', {
+          event_category: 'reservation',
+          event_label: 'AutoReserve',
+        });
+      }
+    });
+  }
+
+  /* -------------------------------------------------------
    * 初期化
    * ------------------------------------------------------- */
   document.addEventListener('DOMContentLoaded', () => {
@@ -228,6 +257,7 @@
     initPageTop();
     initScrollReveal();
     initCounters();
+    initGA4Tracking();
   });
 
 })();
