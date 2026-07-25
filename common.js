@@ -230,7 +230,7 @@
 
       // 電話ボタン
       if (href.startsWith('tel:')) {
-        gtag('event', 'phone_click', {
+        gtag('event', 'click_tel', {
           event_category: 'contact',
           event_label: href.replace('tel:', ''),
           page_location: location.href,
@@ -239,7 +239,7 @@
 
       // ネット予約ボタン（AutoReserve）
       if (href.includes('autoreserve.com')) {
-        gtag('event', 'reservation_click', {
+        gtag('event', 'click_reserve', {
           event_category: 'conversion',
           event_label: link.textContent.trim().slice(0, 50),
           page_location: location.href,
