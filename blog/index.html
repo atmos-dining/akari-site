@@ -35,7 +35,7 @@
 
       <div class="blog-list-grid" id="blog-all-grid">
         <article class="blog-card">
-          <a href="../index.html">
+          <a href="/blog/">
             <div class="blog-body">
               <h3 class="blog-title">記事を読み込んでいます...</h3>
             </div>
@@ -83,7 +83,7 @@
         const el  = document.createElement('article');
         el.className = 'blog-card';
         el.innerHTML = `
-          <a href="./posts/post.html?slug=${encodeURIComponent(p.slug)}">
+          <a href="/blog/posts/post.html?slug=${encodeURIComponent(p.slug)}">
             <div class="blog-image" style="${bg}"></div>
             <div class="blog-body">
               <time class="blog-date" datetime="${esc(p.date)}">${fmtDate(p.date)}</time>
